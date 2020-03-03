@@ -3,6 +3,9 @@ import ProductEl from "./productEl"
 
 class App {
 
+    /**
+     * Constructor getting the references from the DOM
+     */
     constructor() {
         this.pageNumber = 1
 
@@ -72,15 +75,15 @@ class App {
      */
     async loadProducts() {
         try {
+            this.moreBtn.innerHTML = "Carregando..."
+            const response = await axios.get(`https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=${this.pageNumber}`)
+            const { products } = response.data
+            this.render(products)
+            this.pageNumber++
         } catch (err) {
             console.warn('Não foi possível acessar a api')
         }
         this.moreBtn.innerHTML = "Ainda mais produtos aqui!"
-        this.moreBtn.innerHTML = "Carregando..."
-        const response = await axios.get(`https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=${this.pageNumber}`)
-        const { products } = response.data
-        this.render(products)
-        this.pageNumber++
     }
 
     /**
