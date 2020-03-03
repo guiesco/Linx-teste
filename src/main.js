@@ -17,11 +17,19 @@ class App {
         this.loadProducts()
     }
 
+    /**
+     * Function to register page events
+     */
     registerHandlers() {
         this.formEl.onsubmit = event => this.submitNews(event)
         this.moreBtn.onclick = () => this.loadProducts()
     }
 
+    /**
+     * Function to submit newsletter form
+     * 
+     * @param {event} obrigatory obrigatory parameter to prevent submit
+     */
     submitNews(event) {
         event.preventDefault()
         this.submitBtn.innerHTML = "Enviando..."
@@ -31,6 +39,12 @@ class App {
         this.submitBtn.innerHTML = "Enviar agora"
     }
 
+    /**
+     * Function to validate if email is valid through regex
+     * 
+     * @param {String} obrigatory obrigatory parameter to be validated
+     * @returns {boolean}
+     */
     validateEmail(email) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
             return true
@@ -39,6 +53,12 @@ class App {
         return false
     }
 
+    /**
+     * Function to validate if name is valid, having more than 2 letters
+     * 
+     * @param {String} obrigatory obrigatory parameter to be validated
+     * @returns {boolean}
+     */
     validateName(name) {
         if (name.length > 2) {
             return true
@@ -47,19 +67,27 @@ class App {
         return false
     }
 
+    /**
+     * Function to get product list by page and send to render
+     */
     async loadProducts() {
         try {
-            this.moreBtn.innerHTML = "Carregando..."
-            const response = await axios.get(`https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=${this.pageNumber}`)
-            const { products } = response.data
-            this.render(products)
-            this.pageNumber++
         } catch (err) {
             console.warn('Não foi possível acessar a api')
         }
         this.moreBtn.innerHTML = "Ainda mais produtos aqui!"
+        this.moreBtn.innerHTML = "Carregando..."
+        const response = await axios.get(`https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=${this.pageNumber}`)
+        const { products } = response.data
+        this.render(products)
+        this.pageNumber++
     }
 
+    /**
+     * Function to render the product list in the page
+     * 
+     * @param {array} obrigatory a product array to be rendered in the grid 
+     */
     render(productList) {
         productList.forEach(product => {
             const productEl = new ProductEl(product)
