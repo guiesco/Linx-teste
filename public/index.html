@@ -4,9 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Teste Linx</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"
+        type="text/css">
+    <link rel="stylesheet" href="./theme.css" type="text/css">
 </head>
 
 <body>
+    <header id="header" class="row center-xs bg-color">
+        <div id="header-title" class="row">
+            <div id="pre-title" class="box col-xs-12">uma seleção de produtos</div>
+            <div id="title" class="box col-xs-12">especial pra você</div>
+            <div class="box sub-title col-xs-12">Todos os produtos desta lista foram selecionados a partir da sua
+                navegação. Aproveite!</div>
+        </div>
+
+        <ul id="menu-container" class="row col-xs-7 between-xs center-xs">
+            <li class="menu-item box"><span>Conheça a Linx</span></li>
+            <li class="menu-item box"><span>Ajude o algoritmo</span></li>
+            <li class="menu-item box"><span>Seus produtos</span></li>
+            <li class="menu-item box"><span>Compartilhe</span></li>
+        </ul>
+    </header>
+
+    <section id="products" class="row center-xs">
+        <div class="section-title col-xs-12">Sua seleção especial</div>
+
+        <div id="product-grid" class="row col-xs-10">
+            <div class="product-card-container col-xs-3">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img class="product-image"
+                            src="//imagens.pontofrio.com.br/Control/ArquivoExibir.aspx?IdArquivo=6506376"></img>
+                    </div>
+                    <div class="product-title">Product Number 0</div>
+                    <div class="product-description"> Product long description number 0 just to make more than one
+                        like
+                        of text.</div>
+                    <div class="product-old-price">425</div>
+                    <div class="product-price">396</div>
+                    <div class="product-price-split">10x 39.6</div>
+                    <div class="button buy-button">Comprar</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button content-button">Ainda mais produtos aqui!</div>
+    </section>
+
+    <section id="newsletter" class="row center-xs">
+        <div class="section-title col-xs-12">Compartilhe a novidade</div>
+        <div class="section-subtitle sub-title col-xs-12">Quer que seus amigos também ganhem a lista personalizada
+            deles? Preencha
+            agora!
+        </div>
+
+        <form id="news-form" class="row col-xs-9 center-xs" action="post">
+            <div class="form-group col-xs-5">
+                <label for="name" id="name">Nome do seu amigo:</label><br>
+                <input type="text" name="name" id="name-input">
+            </div>
+            <div class="form-group col-xs-5">
+                <label for="email" id="email">E-mail:</label><br>
+                <input type="email" name="email" id="email-input">
+            </div>
+            <button type="submit" class="button content-button">Enviar agora</div>
+        </form>
+    </section>
+
+    <footer id="footer" class="row center-xs bg-color">
+        <div id="footer-text">
+            Testando suas habilidades em HTML, CSS e JS. <br> Linx Impulse <br> 2019
+        </div>
+    </footer>
+
+
     <script src="./bundle.js"></script>
 </body>
 
