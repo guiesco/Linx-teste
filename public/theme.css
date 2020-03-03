@@ -124,6 +124,7 @@ button {
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 40px;
+    margin-left: calc(50% - 101px);
 }
 
 .product-img-container {
