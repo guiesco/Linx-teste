@@ -15,7 +15,7 @@ class ProductEl {
         const html = `<div class="product-card">
                                 <div class="product-img-container">
                                     <img class="product-image"
-                                        src="${image}"></img>
+                                        src="http:${image}"></img>
                                 </div>
                                 <div class="product-title">${name}</div>
                                 <div class="product-description">${description}</div>
