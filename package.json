@@ -7,9 +7,10 @@
     "snowpack": "^3.8.8"
   },
   "scripts": {
-    "start": "npx live-server --open=/public"
+    "start": "npx live-server --open=/public --mount=./node_modules/i18next:./components/i18next"
   },
   "dependencies": {
+    "i18next": "^22.4.5"
   },
   "description": "\"# Linx-teste\"",
   "repository": {

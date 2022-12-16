@@ -50,6 +50,10 @@ button {
 }
 
 /* ##### HEADER ##### */
+.lang-selector-container {
+    flex-direction: row-reverse;
+}
+
 #header {
     padding-top: 60px;
 }

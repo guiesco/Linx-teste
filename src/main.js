@@ -1,6 +1,7 @@
-// import axios from "axios";
 import ProductEl from "./productEl.js";
 import { generateProductPage } from "./productGenerator.js";
+import { resources } from "./i18n/index.js";
+import i18next from "../../components/i18next/index.js";
 
 class App {
   /**
@@ -15,9 +16,11 @@ class App {
     this.gridEl = document.getElementById("product-grid");
     this.moreBtn = document.getElementById("btn-more-products");
     this.submitBtn = document.querySelector("button[type=submit]");
+    this.langSelector = document.querySelector(".lang-selector");
 
     this.registerHandlers();
     this.loadProducts();
+    this.initLanguages();
   }
 
   /**
@@ -26,6 +29,7 @@ class App {
   registerHandlers() {
     this.formEl.onsubmit = (event) => this.submitNews(event);
     this.moreBtn.onclick = () => this.loadProducts();
+    this.langSelector.onchange = (event) => this.changeLanguage(event);
   }
 
   /**
@@ -83,6 +87,21 @@ class App {
     this.render(products);
     this.pageNumber++;
     this.moreBtn.innerHTML = "Ainda mais produtos aqui!";
+  }
+
+  changeLanguage(event) {
+    i18next.changeLanguage(event.target.value);
+  }
+
+  initLanguages() {
+    const languages = Object.keys(resources);
+    languages.forEach((lang) => {
+      const option = document.createElement("option");
+      option.value = lang;
+      option.innerHTML = lang;
+      option.classList.add(`language-${lang}`);
+      this.langSelector.appendChild(option);
+    });
   }
 
   /**
