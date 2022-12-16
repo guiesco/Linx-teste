@@ -89,8 +89,10 @@ class App {
     this.moreBtn.innerHTML = "Ainda mais produtos aqui!";
   }
 
-  changeLanguage(event) {
-    i18next.changeLanguage(event.target.value);
+  changeLanguage({ target: { value } }) {
+    i18next.changeLanguage(value);
+    localStorage.setItem("language", value);
+    location.reload();
   }
 
   initLanguages() {
@@ -100,6 +102,9 @@ class App {
       option.value = lang;
       option.innerHTML = lang;
       option.classList.add(`language-${lang}`);
+      if (localStorage.getItem("language") === lang) {
+        option.selected = true;
+      }
       this.langSelector.appendChild(option);
     });
   }

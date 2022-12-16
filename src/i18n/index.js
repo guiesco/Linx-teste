@@ -3,23 +3,23 @@ import i18next from "../../components/i18next/index.js";
 export const resources = {
   en: {
     translation: {
-      key: "hello world",
+      buy: "Buy",
     },
   },
   es: {
     translation: {
-      key: "hello world",
+      buy: "Compra",
     },
   },
   pt: {
     translation: {
-      key: "hello world",
+      buy: "Comprar",
     },
   },
 };
 
 i18next.init({
-  lng: "en",
+  lng: localStorage.getItem("language") || "en",
   debug: true,
   resources,
 });
