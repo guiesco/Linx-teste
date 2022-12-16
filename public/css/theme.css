@@ -54,6 +54,13 @@ button {
     flex-direction: row-reverse;
 }
 
+.lang-selector {
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px;
+}
+
 #header {
     padding-top: 60px;
 }
@@ -86,6 +93,10 @@ button {
 #menu-container {
     margin-top: 50px;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0;
 }
 
 .menu-item {
@@ -97,13 +108,15 @@ button {
     border-radius: 4px;
     opacity: 1;
     cursor: pointer;
-}
-
-.menu-item span {
     text-align: center;
     font-size: 14px;
     line-height: 40px;
     color: #888888;
+}
+
+.menu-item:hover {
+    color: white;
+    background-color: #888888;
 }
 
 /* ##### PRODUCTS ##### */

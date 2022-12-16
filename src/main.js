@@ -21,6 +21,7 @@ class App {
     this.registerHandlers();
     this.loadProducts();
     this.initLanguages();
+    this.populateI18n();
   }
 
   /**
@@ -29,7 +30,7 @@ class App {
   registerHandlers() {
     this.formEl.onsubmit = (event) => this.submitNews(event);
     this.moreBtn.onclick = () => this.loadProducts();
-    this.langSelector.onchange = (event) => this.changeLanguage(event);
+    this.langSelector.addEventListener('change', (event) => this.changeLanguage(event));
   }
 
   /**
@@ -91,6 +92,7 @@ class App {
 
   changeLanguage(event) {
     i18next.changeLanguage(event.target.value);
+    this.populateI18n();
   }
 
   initLanguages() {
@@ -101,7 +103,34 @@ class App {
       option.innerHTML = lang;
       option.classList.add(`language-${lang}`);
       this.langSelector.appendChild(option);
+
+      if (lang === 'pt') {
+        option.selected = true;
+      }
     });
+  }
+
+  populateI18n() {
+    this.i18nHeader();
+    this.i18nMenu();
+  }
+
+  i18nHeader() {
+    let header_pre_title = document.getElementById("pre-title");
+    header_pre_title.innerText = i18next.t('header.preTitle');
+
+    let header_title = document.getElementById("title");
+    header_title.innerText = i18next.t('header.title');
+
+    let header_subtitle = document.getElementById("subtitle");
+    header_subtitle.innerText = i18next.t("header.subtitle");
+  }
+
+  i18nMenu() {
+    document.querySelector("#menu-container #about").innerText = i18next.t("menu.about");
+    document.querySelector("#menu-container #help-algorithm").innerText = i18next.t("menu.helpAlgorithm");
+    document.querySelector("#menu-container #customer-products").innerText = i18next.t("menu.customerProducts");
+    document.querySelector("#menu-container #share").innerText = i18next.t("menu.share");
   }
 
   /**

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Teste Linx</title>
+    <title>Linx store</title>
 
     <script type="module" src="../src/main.js"></script>
     <script type="module" src="../src/productEl.js"></script>
@@ -15,21 +15,20 @@
 
 <body>
     <header id="header" class="row center-xs bg-color">
-        <div class="lang-selector-container row col-xs-12">
-            <select name="lang-selector" class="lang-selector"></select>
-        </div>
         <div id="header-title" class="row col-xs-12">
-            <div id="pre-title" class="box col-xs-12">uma seleção de produtos</div>
-            <div id="title" class="box col-xs-12">especial pra você</div>
-            <div class="box sub-title col-xs-12">Todos os produtos desta lista foram selecionados a partir da sua
-                navegação. Aproveite!</div>
+            <div class="lang-selector-container row col-xs-12">
+                <select name="lang-selector" class="lang-selector"></select>
+            </div>
+            <div id="pre-title" class="box col-xs-12"></div>
+            <div id="title" class="box col-xs-12"></div>
+            <div id="subtitle" class="box sub-title col-xs-12"></div>
         </div>
 
-        <ul id="menu-container" class="row col-xs-9 col-lg-7 between-xs center-xs">
-            <li class="menu-item box"><span>Conheça a Linx</span></li>
-            <li class="menu-item box"><span>Ajude o algoritmo</span></li>
-            <li class="menu-item box"><span>Seus produtos</span></li>
-            <li class="menu-item box"><span>Compartilhe</span></li>
+        <ul id="menu-container">
+            <li id="about" class="menu-item box"></li>
+            <li id="help-algorithm" class="menu-item box"></li>
+            <li id="customer-products" class="menu-item box"></li>
+            <li id="share" class="menu-item box"></li>
         </ul>
     </header>
 
