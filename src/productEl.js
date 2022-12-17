@@ -5,7 +5,7 @@ class ProductEl {
      * @param {product} obrigatory product to have a template
      * @returns {html} returns a div with the product card
      */
-    constructor(product, lang) {
+    constructor(product) {
         let { image, name, description, oldPrice, price, installments: { count, value } } = product
 
         value = value.toFixed(2).replace('.', ',')
@@ -19,7 +19,7 @@ class ProductEl {
                                 </div>
                                 <div class="product-title">${name}</div>
                                 <div class="product-description">${description}</div>
-                                <div class="product-old-price" data-value="${price}"></div>
+                                <div class="product-old-price" data-value="${oldPrice}"></div>
                                 <div class="product-price" data-value="${price}"></div>
                                 <div class="product-price-split" data-split-value="${value}" data-split-times="${count}"></div>
                                 <div class="button buy-button"></div>

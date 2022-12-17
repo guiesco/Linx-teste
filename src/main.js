@@ -118,6 +118,7 @@ class App {
     this.i18nNewsletter();
     this.i18nFooter();
     this.i18nProductInfo(lang);
+    this.i18nDate(lang);
   }
 
   i18nHeader() {
@@ -180,6 +181,12 @@ class App {
       const formatted_price = Intl.NumberFormat(lang, { style: 'currency', currency }).format(value);
       element.innerText = `${times}x ${value}`;
     })
+  }
+
+  i18nDate(lang) {
+    const current_date = Date.now();
+    const formatted_date = new Intl.DateTimeFormat(lang).format(current_date);
+    document.querySelector("#date").innerHTML = formatted_date;
   }
 
   /**
