@@ -21,6 +21,7 @@ class App {
     this.registerHandlers();
     this.loadProducts();
     this.initLanguages();
+    this.populateI18n();
   }
 
   /**
@@ -29,7 +30,9 @@ class App {
   registerHandlers() {
     this.formEl.onsubmit = (event) => this.submitNews(event);
     this.moreBtn.onclick = () => this.loadProducts();
-    this.langSelector.onchange = (event) => this.changeLanguage(event);
+    this.langSelector.addEventListener("change", (event) =>
+      this.changeLanguage(event)
+    );
   }
 
   /**
@@ -39,14 +42,14 @@ class App {
    */
   submitNews(event) {
     event.preventDefault();
-    this.submitBtn.innerHTML = "Enviando...";
+    this.submitBtn.innerHTML = i18next.t("newsletter.form.btnText.loading");
     if (
       this.validateName(this.nameEl.value) &&
       this.validateEmail(this.emailEl.value)
     ) {
-      alert("Sucesso, seu email foi enviado!");
+      alert(i18next.t("alert.feedbacks.succefullSentEmail"));
     }
-    this.submitBtn.innerHTML = "Enviar agora";
+    this.submitBtn.innerHTML = i18next.t("newsletter.form.btnText.standby");
   }
 
   /**
@@ -59,7 +62,7 @@ class App {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       return true;
     }
-    alert("Por favor, digite um email válido.");
+    alert(i18next.t("alert.validations.invalidEmail"));
     return false;
   }
 
@@ -73,7 +76,7 @@ class App {
     if (name.length > 2) {
       return true;
     }
-    alert("Por favor digite um nome com mais de 2 letras.");
+    alert(i18next.t("alert.validations.tooShortName"));
     return false;
   }
 
@@ -81,18 +84,19 @@ class App {
    * Function to get product list by page and send to render
    */
   async loadProducts() {
-    this.moreBtn.innerHTML = "Carregando...";
+    this.moreBtn.innerHTML = i18next.t("products.btnMoreProducts.loading");
     const response = generateProductPage(this.pageNumber);
     const products = response;
     this.render(products);
     this.pageNumber++;
-    this.moreBtn.innerHTML = "Ainda mais produtos aqui!";
+    this.moreBtn.innerHTML = i18next.t("products.btnMoreProducts.ready");
   }
 
   changeLanguage({ target: { value } }) {
     i18next.changeLanguage(value);
     localStorage.setItem("language", value);
     location.reload();
+    this.populateI18n(lang);
   }
 
   initLanguages() {
@@ -106,7 +110,114 @@ class App {
         option.selected = true;
       }
       this.langSelector.appendChild(option);
+
+      if (lang === "pt") {
+        option.selected = true;
+      }
     });
+  }
+
+  populateI18n(lang) {
+    this.i18nHeader();
+    this.i18nMenu();
+    this.i18nProductsSection();
+    this.i18nNewsletter();
+    this.i18nFooter();
+    this.i18nProductInfo(lang);
+    this.i18nDate(lang);
+  }
+
+  i18nHeader() {
+    document.getElementById("pre-title").innerText =
+      i18next.t("header.preTitle");
+    document.getElementById("title").innerText = i18next.t("header.title");
+    document.getElementById("subtitle").innerText =
+      i18next.t("header.subtitle");
+  }
+
+  i18nMenu() {
+    document.querySelector("#menu-container #about").innerText =
+      i18next.t("menu.about");
+    document.querySelector("#menu-container #help-algorithm").innerText =
+      i18next.t("menu.helpAlgorithm");
+    document.querySelector("#menu-container #customer-products").innerText =
+      i18next.t("menu.customerProducts");
+    document.querySelector("#menu-container #share").innerText =
+      i18next.t("menu.share");
+  }
+
+  i18nProductsSection() {
+    document.querySelector("#products .section-title").innerHTML = i18next.t(
+      "products.sectionTitle"
+    );
+    document.querySelector("#products #btn-more-products").innerHTML =
+      i18next.t("products.btnMoreProducts.ready");
+  }
+
+  i18nNewsletter() {
+    document.querySelector("#newsletter .section-title").innerHTML = i18next.t(
+      "newsletter.sectionTitle"
+    );
+    document.querySelector("#newsletter .section-subtitle").innerHTML =
+      i18next.t("newsletter.sectionSubTitle");
+    document.querySelector("#newsletter #news-form #name").innerHTML =
+      i18next.t("newsletter.form.name");
+    document.querySelector("#newsletter #news-form #email").innerHTML =
+      i18next.t("newsletter.form.email");
+    document.querySelector("#newsletter #news-form .button").innerHTML =
+      i18next.t("newsletter.form.btnText.standby");
+  }
+
+  i18nFooter() {
+    document.querySelector("#footer #footer-text").innerHTML =
+      i18next.t("footer.msg");
+  }
+
+  i18nProductInfo(lang) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+
+    let buyBtns = document.querySelectorAll(".buy-button");
+    buyBtns.forEach((element) => {
+      element.innerHTML = i18next.t("products.btnBuyProduct");
+    });
+
+    const currency = i18next.t("currency");
+    let prices = document.querySelectorAll(".product-price");
+    prices.forEach((element) => {
+      const value = element.dataset.value;
+      const formatted_price = Intl.NumberFormat(lang, {
+        style: "currency",
+        currency,
+      }).format(value);
+      element.innerText = `${formatted_price}`;
+    });
+
+    let old_prices = document.querySelectorAll(".product-old-price");
+    old_prices.forEach((element) => {
+      const value = element.dataset.value;
+      const formatted_price = Intl.NumberFormat(lang, {
+        style: "currency",
+        currency,
+      }).format(value);
+      element.innerText = `${formatted_price}`;
+    });
+
+    let split_value = document.querySelectorAll(".product-price-split");
+    split_value.forEach((element) => {
+      const value = element.dataset.splitValue;
+      const times = element.dataset.splitTimes;
+      const formatted_price = Intl.NumberFormat(lang, {
+        style: "currency",
+        currency,
+      }).format(value);
+      element.innerText = `${times}x ${value}`;
+    });
+  }
+
+  i18nDate(lang) {
+    const current_date = Date.now();
+    const formatted_date = new Intl.DateTimeFormat(lang).format(current_date);
+    document.querySelector("#date").innerHTML = formatted_date;
   }
 
   /**

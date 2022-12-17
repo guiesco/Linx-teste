@@ -1,5 +1,3 @@
-import { t } from "../../components/i18next/index.js";
-
 class ProductEl {
   /**
    * Constructor of the product element
@@ -28,10 +26,10 @@ class ProductEl {
                                 </div>
                                 <div class="product-title">${name}</div>
                                 <div class="product-description">${description}</div>
-                                <div class="product-old-price">De: R$${oldPrice},00</div>
-                                <div class="product-price">Por: R$${price},00</div>
-                                <div class="product-price-split">ou ${count}x de R$${value}</div>
-                                <div class="button buy-button">${t("buy")}</div>
+                                <div class="product-old-price" data-value="${oldPrice}"></div>
+                                <div class="product-price" data-value="${price}"></div>
+                                <div class="product-price-split" data-split-value="${value}" data-split-times="${count}"></div>
+                                <div class="button buy-button"></div>
                             </div>`;
     div.innerHTML = html;
     return div;
