@@ -16,7 +16,7 @@ const productModel = (i) => {
     }`,
     oldPrice: productSample[i % 8].oldPrice,
     price: productSample[i % 8].price,
-    description: `Product long description number ${i} just to make more than one like of text.`,
+    description: i,
     installments: {
       count: productSample[i % 8].installments.count,
       value: productSample[i % 8].installments.value,

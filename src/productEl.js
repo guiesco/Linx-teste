@@ -25,7 +25,7 @@ class ProductEl {
                                         src="http:${image}"></img>
                                 </div>
                                 <div class="product-title">${name}</div>
-                                <div class="product-description">${description}</div>
+                                <div class="product-description" data-value="${description}"></div>
                                 <div class="product-old-price" data-value="${oldPrice}"></div>
                                 <div class="product-price" data-value="${price}"></div>
                                 <div class="product-price-split" data-split-value="${value}" data-split-times="${count}"></div>

@@ -1,0 +1,51 @@
+{
+    "translation":{
+      "header":{
+        "preTitle":"Uma seleção de produtos",
+        "title":"Especial para você",
+        "subtitle":"Todos os produtos desta lista foram selecionados a partir da sua navegação. Aproveite!"
+      },
+      "menu":{
+        "about":"Conheça a Linx",
+        "helpAlgorithm":"Ajude o algoritimo",
+        "customerProducts":"Seus produtos",
+        "share":"Compartilhe"
+      },
+      "products":{
+        "sectionTitle":"Sua seleção especial",
+        "btnMoreProducts":{
+          "loading":"Carregando...",
+          "ready":"Ainda mais produtos aqui!"
+        },
+        "btnBuyProduct":"Comprar",
+        "price":"Por: ",
+        "oldPrice":"De: ",
+        "description":"Descrição longa do produto numero {{count}} apenas para ter mais de uma linha de texto."
+      },
+      "newsletter":{
+        "sectionTitle":"Compartilhe a novidade",
+        "sectionSubTitle":"Quer que seus amigos também ganhem a lista personalizada deles? Preencha agora!",
+        "form":{
+          "name":"Nome do seu amigo:",
+          "email":"Email",
+          "btnText":{
+            "loading":"Enviando...",
+            "standby":"Enviar agora"
+          }
+        }
+      },
+      "footer":{
+        "msg":"Testando suas habilidades em HTML, CSS e JS. <br> Linx Impulse <br> 2019"
+      },
+      "alert":{
+        "validations":{
+          "tooShortName":"Por favor digite um nome com mais de 2 letras",
+          "invalidEmail":"Por favor, digite um email válido"
+        },
+        "feedbacks":{
+          "succefullSentEmail":"Sucesso, seu email foi enviado!"
+        }
+      },
+      "currency":"BRL"
+    }
+  }

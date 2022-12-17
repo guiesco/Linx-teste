@@ -95,8 +95,7 @@ class App {
   changeLanguage({ target: { value } }) {
     i18next.changeLanguage(value);
     localStorage.setItem("language", value);
-    location.reload();
-    this.populateI18n(lang);
+    this.populateI18n(value);
   }
 
   initLanguages() {
@@ -110,14 +109,11 @@ class App {
         option.selected = true;
       }
       this.langSelector.appendChild(option);
-
-      if (lang === "pt") {
-        option.selected = true;
-      }
     });
   }
 
   populateI18n(lang) {
+    if (!lang) lang = localStorage.getItem("language");
     this.i18nHeader();
     this.i18nMenu();
     this.i18nProductsSection();
@@ -189,7 +185,7 @@ class App {
         style: "currency",
         currency,
       }).format(value);
-      element.innerText = `${formatted_price}`;
+      element.innerText = i18next.t("products.price") + formatted_price;
     });
 
     let old_prices = document.querySelectorAll(".product-old-price");
@@ -199,7 +195,13 @@ class App {
         style: "currency",
         currency,
       }).format(value);
-      element.innerText = `${formatted_price}`;
+      element.innerText = i18next.t("products.oldPrice") + formatted_price;
+    });
+
+    let description = document.querySelectorAll(".product-description");
+    description.forEach((element) => {
+      const value = element.dataset.value;
+      element.innerText = i18next.t("products.description", { count: value });
     });
 
     let split_value = document.querySelectorAll(".product-price-split");
