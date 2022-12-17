@@ -233,6 +233,7 @@ class App {
 
       this.gridEl.appendChild(productEl);
     });
+    this.populateI18n();
   }
 }
 
