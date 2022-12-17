@@ -19,7 +19,8 @@ export const resources = {
         btnMoreProducts: {
           loading: "Loading...",
           ready: "More products here!"
-        }
+        },
+        btnBuyProduct: "Buy"
       },
       newsletter: {
         sectionTitle: 'Share the news',
@@ -44,7 +45,8 @@ export const resources = {
         feedbacks: {
           succefullSentEmail: 'Success, your e-mail was sent!'
         }
-      }
+      },
+      currency: 'USD'
     },
   },
   pt: {
@@ -65,7 +67,8 @@ export const resources = {
         btnMoreProducts: {
           loading: "Carregando...",
           ready: "Ainda mais produtos aqui!"
-        }
+        },
+        btnBuyProduct: "Comprar"
       },
       newsletter: {
         sectionTitle: 'Compartilhe a novidade',
@@ -90,7 +93,8 @@ export const resources = {
         feedbacks: {
           succefullSentEmail: 'Sucesso, seu email foi enviado!'
         }
-      }
+      },
+      currency: 'BRL'
     },
   },
 };

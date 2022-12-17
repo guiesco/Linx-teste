@@ -59,6 +59,7 @@ button {
     text-transform: uppercase;
     font-weight: bold;
     padding: 5px;
+    color: #888888;
 }
 
 #header {

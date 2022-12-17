@@ -91,8 +91,9 @@ class App {
   }
 
   changeLanguage(event) {
-    i18next.changeLanguage(event.target.value);
-    this.populateI18n();
+    const lang = event.target.value;
+    i18next.changeLanguage(lang);
+    this.populateI18n(lang);
   }
 
   initLanguages() {
@@ -110,12 +111,13 @@ class App {
     });
   }
 
-  populateI18n() {
+  populateI18n(lang) {
     this.i18nHeader();
     this.i18nMenu();
     this.i18nProductsSection();
     this.i18nNewsletter();
     this.i18nFooter();
+    this.i18nProductInfo(lang);
   }
 
   i18nHeader() {
@@ -141,11 +143,43 @@ class App {
     document.querySelector("#newsletter .section-subtitle").innerHTML = i18next.t("newsletter.sectionSubTitle");
     document.querySelector("#newsletter #news-form #name").innerHTML = i18next.t("newsletter.form.name");
     document.querySelector("#newsletter #news-form #email").innerHTML = i18next.t("newsletter.form.email");
-    document.querySelector("#newsletter #news-form .button").innerHTML = i18next.t("newsletter.form.btnText");
+    document.querySelector("#newsletter #news-form .button").innerHTML = i18next.t("newsletter.form.btnText.standby");
   }
 
   i18nFooter() {
     document.querySelector("#footer #footer-text").innerHTML = i18next.t("footer.msg");
+  }
+
+  i18nProductInfo(lang) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+
+    let buyBtns = document.querySelectorAll(".buy-button");
+    buyBtns.forEach((element) => {
+      element.innerHTML = i18next.t("products.btnBuyProduct");
+    })
+
+    const currency = i18next.t("currency");
+    let prices = document.querySelectorAll(".product-price");
+    prices.forEach((element) => {
+      const value = element.dataset.value;
+      const formatted_price = Intl.NumberFormat(lang, { style: 'currency', currency }).format(value);
+      element.innerText = `${formatted_price}`;
+    })
+
+    let old_prices = document.querySelectorAll(".product-old-price");
+    old_prices.forEach((element) => {
+      const value = element.dataset.value;
+      const formatted_price = Intl.NumberFormat(lang, { style: 'currency', currency }).format(value);
+      element.innerText = `${formatted_price}`;
+    })
+
+    let split_value = document.querySelectorAll(".product-price-split");
+    split_value.forEach((element) => {
+      const value = element.dataset.splitValue;
+      const times = element.dataset.splitTimes;
+      const formatted_price = Intl.NumberFormat(lang, { style: 'currency', currency }).format(value);
+      element.innerText = `${times}x ${value}`;
+    })
   }
 
   /**
